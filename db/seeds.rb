@@ -19,5 +19,5 @@ movies = [{:title => 'Aladdin', :rating => 'G', :release_date => '25-Nov-1992'},
   	 ]
 
 movies.each do |movie|
-  Movie.create!(movie)
+  Movie.create!(movie) #adds into database while movie.create and then movie.save also adds into database
 end
