@@ -7,11 +7,11 @@ class MoviesController < ApplicationController
   end
 
   def index
-    if params[:MovieTitle] != nil 
+    if params[:movietitle] != nil 
        @movies = Movie.title_query
        @title_color = hilite
        @release_date_color = nil
-    elsif params[:ReleaseDate] != nil
+    elsif params[:releasedate] != nil
       @movies = Movie.release_date_query
       @release_date_color = hilite
       @title_color = nil
