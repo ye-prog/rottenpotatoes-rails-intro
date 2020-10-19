@@ -9,11 +9,11 @@ class MoviesController < ApplicationController
   def index
       ratings = params[:ratings]
     if params[:movietitle] != nil 
-       @movies = Movie.title_query
+       @movies = Movie.with_ratings(ratings).order("title")
        @title_color = "hilite"
        @release_date_color = nil
     elsif params[:release_date] != nil
-      @movies = Movie.release_date_query
+      @movies = Movie.with_ratings(ratings).order("release_date")
       @release_date_color = "hilite"
       @title_color = nil
     else
