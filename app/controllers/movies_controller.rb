@@ -7,11 +7,11 @@ class MoviesController < ApplicationController
   end
 
   def index
-    ratings = params[:ratings].keys
+    ratings = params[:ratings]
     @movies = Movie.with_ratings(ratings)
     @all_ratings = Movie.all_ratings
     if ratings != nil
-      @ratings_to_show = ratings
+      @ratings_to_show = ratings.keys
     else 
       @ratings_to_show = []
     end
