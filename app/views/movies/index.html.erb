@@ -1,4 +1,4 @@
-<!--  This file is app/views/movies/index.html.erb -->
+ <!--  This file is app/views/movies/index.html.erb -->
 <h2>All Movies</h2>
 
 <%= form_tag movies_path, method: :get, id: 'ratings_form' do %>
@@ -15,9 +15,9 @@
 <table class="table table-striped col-md-12" id="movies">
   <thead>
     <tr>
-      <th>Movie Title</th>
+      <%= link_to "Movie Title", id: "title_header", movies_path({:MovieTitle => 1}), class: "#{@title_color}"  %>
       <th>Rating</th>
-      <th>Release Date</th>
+     <%= link_to "Release Date", id: "release_date_header", movies_path({:ReleaseDate => 1}), class: "#{@release_date_color}"  %>
       <th>More Info</th>
     </tr>
   </thead>

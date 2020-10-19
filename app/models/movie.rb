@@ -10,4 +10,12 @@ class Movie < ActiveRecord::Base
       return Movie.all
     end
   end
+  
+  def self.title_query
+    return Movie.order("title")
+  end
+  
+  def self.release_date_query
+    return Movie.order("release_date")
+  end
 end
