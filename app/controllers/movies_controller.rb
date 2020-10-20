@@ -8,9 +8,10 @@ class MoviesController < ApplicationController
 
   def index
     if session[:arbitrary] 
-      var = session[:arbitrary] // need to check for input data
-       params.each_key do |key|  {:ratings, etc.}
+      var = session[:arbitrary] 
+       params.each_key do |key| 
          var[key] = params[key]
+       end
     else 
       var = params
     end
