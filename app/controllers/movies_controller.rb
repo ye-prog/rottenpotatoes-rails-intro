@@ -7,7 +7,7 @@ class MoviesController < ApplicationController
   end
 
   def index
-     if params[:movietitle] != nil || params[:release_date] != nil || params[:ratings] != nil|| !session.has_key?(:params)
+     if params[:movietitle] != nil || params[:release_date] != nil || params[:ratings] != nil || !session.has_key?(:params)
        session[:params] = params
       ratings = params[:ratings]
     if params[:movietitle] != nil 
@@ -50,8 +50,8 @@ class MoviesController < ApplicationController
       else 
         @ratings_to_show = []
       end
+      session.clear
      end
-    session.clear
   end
 
   def new
