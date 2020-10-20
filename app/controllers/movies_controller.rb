@@ -7,14 +7,8 @@ class MoviesController < ApplicationController
   end
 
   def index
-    if session[:arbitrary] 
-      var = session[:arbitrary] 
-       params.each_key do |key| 
-         var[key] = params[key]
-       end
-    else 
+
       var = params
-    end
       ratings = var[:ratings]
     if params[:movietitle]
        @movies = Movie.with_ratings(ratings).order("title")
@@ -35,7 +29,6 @@ class MoviesController < ApplicationController
       else 
         @ratings_to_show = []
       end
-      session[:arbitrary] = params
   end
 
   def new
