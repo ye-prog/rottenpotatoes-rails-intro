@@ -7,14 +7,17 @@ class MoviesController < ApplicationController
   end
 
   def index
-     if params[:movietitle] != nil || params[:release_date] != nil || params[:ratings] != nil || !session.has_key?(:params)
-       session[:params] = params
-      ratings = params[:ratings]
-    if params[:movietitle] != nil 
+    if session[:arbitrary]
+      var = session[:arbitrary]
+    else 
+      var = params
+    end
+      ratings = var[:ratings]
+    if params[:movietitle]
        @movies = Movie.with_ratings(ratings).order("title")
        @title_color = "hilite"
        @release_date_color = nil
-    elsif params[:release_date] != nil
+    elsif var[:release_date] 
       @movies = Movie.with_ratings(ratings).order("release_date")
       @release_date_color = "hilite"
       @title_color = nil
@@ -24,33 +27,12 @@ class MoviesController < ApplicationController
       @title_color = nil
     end
     @all_ratings = Movie.all_ratings
-      if ratings != nil
+      if ratings
         @ratings_to_show = ratings.keys
       else 
         @ratings_to_show = []
       end
-   else
-      ratings = session[:params][:ratings]
-    if session[:params][:movietitle] != nil 
-       @movies = Movie.with_ratings(ratings).order("title")
-       @title_color = "hilite"
-       @release_date_color = nil
-    elsif session[:params][:release_date] != nil
-      @movies = Movie.with_ratings(ratings).order("release_date")
-      @release_date_color = "hilite"
-      @title_color = nil
-    else
-      @movies = Movie.with_ratings(ratings)
-      @release_date_color = nil
-      @title_color = nil
-    end
-    @all_ratings = Movie.all_ratings
-      if ratings != nil
-        @ratings_to_show = ratings.keys
-      else 
-        @ratings_to_show = []
-      end
-     end
+      session[:arbitrary] = params
   end
 
   def new

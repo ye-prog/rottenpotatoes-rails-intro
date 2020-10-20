@@ -4,18 +4,18 @@ class Movie < ActiveRecord::Base
    end
   
   def self.with_ratings(ratings)
-    if ratings != nil
-      return Movie.where(rating: ratings.keys)
+    if ratings 
+       Movie.where(rating: ratings.keys)
     else
-      return Movie.all
+       Movie.all
     end
   end
   
   def self.title_query
-    return Movie.order("title")
+     Movie.order("title")
   end
   
   def self.release_date_query
-    return Movie.order("release_date")
+     Movie.order("release_date")
   end
 end
